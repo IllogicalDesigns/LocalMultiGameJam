@@ -1,0 +1,13 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\MainMenu\CreateServerPanel.cs">
+    <Files>
+      <File FileName="Assets\Scripts\OnlinePanelController.cs" Line="21" Column="3" />
+      <File FileName="Assets\Scripts\MainMenu\CreateServerPanel.cs" Line="85" Column="55" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

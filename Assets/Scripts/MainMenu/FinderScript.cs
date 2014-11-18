@@ -1,10 +1,14 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class FinderScript : MonoBehaviour
 {
 		private HostData[] hostData;
 		public GameObject serverButton;
+		public Text ipAddForce;
+		public Text passForce;
+		public Text PortForce;
 
 		// Use this for initialization
 		void Start ()
@@ -18,6 +22,14 @@ public class FinderScript : MonoBehaviour
 						Debug.Log ("Game Name: " + hostData [i].gameName);
 						i++;
 				}
+		}
+
+		public void ForceConnect ()
+		{
+		int tmpPort = 0;
+		int.TryParse (PortForce.text, out tmpPort);
+		Network.Connect (ipAddForce.text.ToString(), tmpPort, passForce.text.ToString());
+			Debug.Log ("Forcing A Connections To " + ipAddForce.text);
 		}
 	
 		public void RefreshServerList ()
