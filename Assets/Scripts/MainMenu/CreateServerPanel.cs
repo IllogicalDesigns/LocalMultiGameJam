@@ -15,6 +15,7 @@ public class CreateServerPanel : MonoBehaviour
 		public Text gameModeName;
 		public Text confirmServerText;
 		public GameObject confirmServerPanel;
+		public Text connectedClients;
 		public Sprite[] mapSprites;
 		public string[] mapNames;
 		public string[] gameModeNames;
@@ -46,9 +47,10 @@ public class CreateServerPanel : MonoBehaviour
 				}
 		}
 
-		void OnServerInitialized () 
+		void OnServerInitialized ()
 		{
-		Debug.Log ("(" + serverName.text + ") working and ready for connections.");
+				Network.Connect (Network.player.ipAddress, 25565, passwordField.text);
+				Debug.Log ("(" + serverName.text + ") working and ready for connections.");
 		}
 
 		public void confirmServer ()
@@ -79,6 +81,8 @@ public class CreateServerPanel : MonoBehaviour
 		// Update is called once per frame
 		void Update ()
 		{
-	
+				if (Network.isServer) {
+						connectedClients.text = "players Connected : " + Network.connections.ToString ();
+				}
 		}
 }
