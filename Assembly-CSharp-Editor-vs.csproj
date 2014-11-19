@@ -58,11 +58,13 @@
      <None Include="Assets\shaders\JMO Assets\Toony Gooch\Shaders\Toony_Gooch_RimOutlineHard.shader" />
      <None Include="Assets\InputManager\Source\Resources\InputManager.txt" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-BasicOutline.shader" />
+     <None Include="Assets\Necromancer GUI\Kingthings.txt" />
      <None Include="Assets\Standard Assets\Projectors\Sources\Shaders\Projector Light.shader" />
      <None Include="Assets\Standard Assets\Water (Basic)\Sources\Shaders\FX-Water Simple.shader" />
      <None Include="Assets\shaders\JMO Assets\Toony Gooch\Shaders\Toony_Gooch_RimLight.shader" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-LightedOutline.shader" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Lighted.shader" />
+     <None Include="Assets\Necromancer GUI\Readme.txt" />
      <None Include="Assets\shaders\Team Fortress 2.shader" />
      <None Include="Assets\shaders\JMO Assets\Toony Gooch\Shaders\Toony_Gooch_RimAlpha.shader" />
      <None Include="Assets\shaders\JMO Assets\Toony Gooch\Shaders\Toony_Gooch_RimOutline.shader" />

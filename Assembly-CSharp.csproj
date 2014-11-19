@@ -62,6 +62,7 @@
      <Compile Include="Assets\Scripts\Ai\Dissolve.cs" />
      <Compile Include="Assets\Scripts\Ai\SkeleCollider.cs" />
      <Compile Include="Assets\Scripts\Ai\SkeletonAi.cs" />
+     <Compile Include="Assets\Scripts\DontGoThroughThings.cs" />
      <Compile Include="Assets\Scripts\MainMenu\ClickElement.cs" />
      <Compile Include="Assets\Scripts\MainMenu\ControlScript.cs" />
      <Compile Include="Assets\Scripts\MainMenu\CreateServerPanel.cs" />
@@ -74,6 +75,8 @@
      <Compile Include="Assets\Scripts\MainMenu\PauseController.cs" />
      <Compile Include="Assets\Scripts\MainMenu\PlayPanelEvent.cs" />
      <Compile Include="Assets\Scripts\MainMenu\ServerClassScript.cs" />
+     <Compile Include="Assets\Scripts\MenuScript.cs" />
+     <Compile Include="Assets\Scripts\OnlineGroupOLDGUI.cs" />
      <Compile Include="Assets\Scripts\OnlinePanelController.cs" />
      <Compile Include="Assets\Scripts\Player\Arrow.cs" />
      <Compile Include="Assets\Scripts\Player\Bomb.cs" />
@@ -86,10 +89,11 @@
      <Compile Include="Assets\Scripts\Player\Joystick.cs" />
      <Compile Include="Assets\Scripts\Player\Move2p.cs" />
      <Compile Include="Assets\Scripts\Player\Movement.cs" />
+     <Compile Include="Assets\Scripts\Rpc.cs" />
      <Compile Include="Assets\Scripts\TreasureGameMode\ExitScript.cs" />
      <Compile Include="Assets\Scripts\TreasureGameMode\RespawnPoints.cs" />
      <Compile Include="Assets\Scripts\TreasureGameMode\Treasure.cs" />
-     <Compile Include="Assets\badWordFilter.cs" />
+     <Compile Include="Assets\Scripts\badWordFilter.cs" />
      <None Include="Assets\Standard Assets\Projectors\Guidelines.txt" />
      <None Include="Assets\shaders\ToonSelfIlumination.shader" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />
@@ -98,11 +102,13 @@
      <None Include="Assets\shaders\JMO Assets\Toony Gooch\Shaders\Toony_Gooch_RimOutlineHard.shader" />
      <None Include="Assets\InputManager\Source\Resources\InputManager.txt" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-BasicOutline.shader" />
+     <None Include="Assets\Necromancer GUI\Kingthings.txt" />
      <None Include="Assets\Standard Assets\Projectors\Sources\Shaders\Projector Light.shader" />
      <None Include="Assets\Standard Assets\Water (Basic)\Sources\Shaders\FX-Water Simple.shader" />
      <None Include="Assets\shaders\JMO Assets\Toony Gooch\Shaders\Toony_Gooch_RimLight.shader" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-LightedOutline.shader" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Lighted.shader" />
+     <None Include="Assets\Necromancer GUI\Readme.txt" />
      <None Include="Assets\shaders\Team Fortress 2.shader" />
      <None Include="Assets\shaders\JMO Assets\Toony Gooch\Shaders\Toony_Gooch_RimAlpha.shader" />
      <None Include="Assets\shaders\JMO Assets\Toony Gooch\Shaders\Toony_Gooch_RimOutline.shader" />

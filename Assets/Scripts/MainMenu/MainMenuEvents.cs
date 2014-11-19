@@ -8,6 +8,7 @@ public class MainMenuEvents : MonoBehaviour
 		public GameObject playGroup;
 		public GameObject kingHat;
 		public GameObject onlineGroup;
+		public bool onlineGroupActive;
 
 		void Start ()
 		{
@@ -57,7 +58,8 @@ public class MainMenuEvents : MonoBehaviour
 				kingHat.SetActive (false);
 				optionsGroup.SetActive (false);
 				playGroup.SetActive (false);
-				onlineGroup.SetActive (true);
+				//onlineGroup.SetActive (true);
+				onlineGroupActive = true;
 		}
 		
 
