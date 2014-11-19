@@ -55,10 +55,8 @@ public class OnlineGroupOLDGUI : MonoBehaviour
 		{
 				Network.RemoveRPCsInGroup (0);
 				Network.RemoveRPCsInGroup (1);
-				RpcLink.networkView.RPC ("LoadLevel", RPCMode.AllBuffered, level, lastLevelPrefix + 1);
-				int tmpLevel;
-				int.TryParse (level, out tmpLevel);
-				Application.LoadLevel (tmpLevel.ToString ());
+				RpcLink.networkView.RPC ("LoadLevel", RPCMode.AllBuffered, level, lastLevelPrefix + 1);	
+				Application.LoadLevel (levelToLoad);
 				Debug.Log ("Connected to server");
 		}
 
@@ -184,9 +182,7 @@ public class OnlineGroupOLDGUI : MonoBehaviour
 				if (Network.isServer) {
 						bool first = true;
 						if (first) {
-								int tmpLevel;
-								int.TryParse (level, out tmpLevel);
-								Application.LoadLevel (tmpLevel);
+								Application.LoadLevel (levelToLoad);
 								first = false;
 						}
 				}
