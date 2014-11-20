@@ -8,10 +8,10 @@ public class OnlineGroupOLDGUI : MonoBehaviour
 		float count = 0;
 		public string levelToLoad = "1";
 		public GUISkin mySkin;
-		public bool onFinder = true;
-		public bool onSettings = false;
-		private Rect windowRect1 = new Rect (25, 25, 600, 100);
-		private Rect windowRect2 = new Rect (25, 25, 600, 100);
+		private bool onFinder = true;
+		private bool onSettings = false;
+		private Rect windowRect1 = new Rect (Screen.height / 16, Screen.width / 16, Screen.width / 1.25f, Screen.height / 1.25f);
+		private Rect windowRect2 = new Rect (Screen.height / 16, Screen.width / 16, Screen.width / 1.25f, Screen.height / 1.25f);
 		public string disconnectedLevel = "MainMenu";
 		private string gameName = "KoTD Tresure Ruse";
 		private bool refreshing = false;
@@ -24,6 +24,7 @@ public class OnlineGroupOLDGUI : MonoBehaviour
 		private string playerCount = "4";
 		private int players;
 		private int portint;
+		private bool onMainMenu = true;
 		public MainMenuEvents mainMenuLink;
 
 
@@ -37,7 +38,6 @@ public class OnlineGroupOLDGUI : MonoBehaviour
 				DontDestroyOnLoad (this);
 				networkView.group = 1;
 				Network.SetLevelPrefix (lastLevelPrefix);
-		
 				if (Network.HavePublicAddress ()) {
 						Debug.Log ("This machine has a public IP address");
 				} else {
@@ -45,6 +45,19 @@ public class OnlineGroupOLDGUI : MonoBehaviour
 				}
 		}
 
+		string ScanForBadWords (string testString)
+		{
+				badWordFilter badWordLink = gameObject.GetComponent<badWordFilter> ();
+				testString = testString.ToLower ();
+				foreach (string badWord in badWordLink.profanity) {
+						if (testString.Contains (badWord)) {
+								testString = testString.Replace (badWord, "Love");
+								return testString;
+						}
+				}
+				return testString;
+		}
+	
 		void  Connect (string ip, int port)
 		{
 				Network.Connect (ip, port, password);
@@ -57,6 +70,10 @@ public class OnlineGroupOLDGUI : MonoBehaviour
 				Network.RemoveRPCsInGroup (1);
 				RpcLink.networkView.RPC ("LoadLevel", RPCMode.AllBuffered, level, lastLevelPrefix + 1);	
 				Application.LoadLevel (levelToLoad);
+				onMainMenu = false;
+				PlayerInfo playerInfoLink = gameObject.GetComponent<PlayerInfo> ();
+				username = ScanForBadWords (username);
+				playerInfoLink.playerName = username;
 				Debug.Log ("Connected to server");
 		}
 
@@ -66,17 +83,33 @@ public class OnlineGroupOLDGUI : MonoBehaviour
 				mainMenuLink.onlineGroupActive = false;
 		}
 
+		void OnDisconnectedFromServer (NetworkDisconnection info)
+		{
+				if (Network.isServer)
+						Debug.Log ("Local server connection disconnected");
+				else
+			if (info == NetworkDisconnection.LostConnection)
+						Debug.Log ("Lost connection to the server");
+				else
+						Debug.Log ("Successfully diconnected from the server");
+				Application.LoadLevel ("MainMenu");
+				Destroy (gameObject, 0.5f);
+		}
+
 		void startServer ()
 		{
-		
 				int.TryParse (playerCount, out players);
 				int.TryParse (port, out portint);
-		
+				players --;
 				Network.incomingPassword = password;
 				bool useNat = !Network.HavePublicAddress ();
 				Network.InitializeServer (players, portint, useNat);
+				gameName = ScanForBadWords (gameName);
 				MasterServer.RegisterHost (gameName, "ShArksGiving", level);
-				Debug.Log ("started server");
+				PlayerInfo playerInfoLink = gameObject.GetComponent<PlayerInfo> ();
+				username = ScanForBadWords (username);
+				playerInfoLink.playerName = username;
+				Debug.Log ("started server : " + gameName);
 		}
 
 		void refreshHostList ()
@@ -124,20 +157,20 @@ public class OnlineGroupOLDGUI : MonoBehaviour
 		{
 				GUILayout.BeginVertical ();
 				GUILayout.Label ("Server Setup");
-				GUILayout.Label ("ip address (should be prefilled out)");
+				GUILayout.Label ("Your ip address (should be prefilled out)");
 				ip = GUILayout.TextField (ip, 32);
 		
 				GUILayout.Label ("port");
 				port = GUILayout.TextField (port, 32);
 		
-				GUILayout.Label ("level (1) or level (1)");
-				level = GUILayout.TextField (level, 1);
+				//GUILayout.Label ("level (1) or level (1)");
+				//level = GUILayout.TextField (level, 1);
 		
 				GUILayout.Label ("Your game's unique name");
 				gameName = GUILayout.TextField (gameName, 32);
 		
-				GUILayout.Label ("Max Players (recommended 4 or less)");
-				playerCount = GUILayout.TextField (playerCount, 2);
+				//GUILayout.Label ("Max Players (recommended 4 or less)");
+				//playerCount = GUILayout.TextField (playerCount, 2);
 		
 				GUILayout.Label ("password (defult is nimda)");
 				password = GUILayout.PasswordField (password, "*" [0], 32);
@@ -155,35 +188,42 @@ public class OnlineGroupOLDGUI : MonoBehaviour
 
 		void  Update ()
 		{
-				count -= Time.deltaTime;
-				if (count < 0) {
-						refreshHostList ();
-						count = 3;
-				}
-				if (refreshing) {
-						if (MasterServer.PollHostList ().Length > 0) {  
-								refreshing = false;
-								Debug.Log (MasterServer.PollHostList ().Length);
-								hostData = MasterServer.PollHostList ();
+				if (onMainMenu) {
+						count -= Time.deltaTime;
+						if (count < 0) {
+								refreshHostList ();
+								count = 3;
+						}
+						if (refreshing) {
+								if (MasterServer.PollHostList ().Length > 0) {  
+										refreshing = false;
+										Debug.Log (MasterServer.PollHostList ().Length);
+										hostData = MasterServer.PollHostList ();
+								}
 						}
 				}
 		}
 		// Update is called once per frame
 		void OnGUI ()
 		{
-				if (mainMenuLink.onlineGroupActive) {
-						if (onFinder) {
-								windowRect1 = GUILayout.Window (0, windowRect1, DoMyWindow1, "");
-						} else if (onSettings) {
-								windowRect2 = GUILayout.Window (0, windowRect2, DoMyWindow2, "");
+				if (onMainMenu) {
+						if (mainMenuLink.onlineGroupActive) {
+								if (onFinder) {
+										windowRect1 = GUILayout.Window (0, windowRect1, DoMyWindow1, "");
+								} else if (onSettings) {
+										windowRect2 = GUILayout.Window (0, windowRect2, DoMyWindow2, "");
+								}
 						}
 				}
-				GUI.skin = mySkin;
-				if (Network.isServer) {
-						bool first = true;
-						if (first) {
-								Application.LoadLevel (levelToLoad);
-								first = false;
+				if (onMainMenu) {
+						GUI.skin = mySkin;
+						if (Network.isServer) {
+								bool first = true;
+								if (first) {
+										Application.LoadLevel (levelToLoad);
+										first = false;
+										onMainMenu = false;
+								}
 						}
 				}
 		}

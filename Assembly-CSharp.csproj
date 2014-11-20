@@ -76,6 +76,8 @@
      <Compile Include="Assets\Scripts\MainMenu\PlayPanelEvent.cs" />
      <Compile Include="Assets\Scripts\MainMenu\ServerClassScript.cs" />
      <Compile Include="Assets\Scripts\MenuScript.cs" />
+     <Compile Include="Assets\Scripts\Networking\PlayerFiingSystem.cs" />
+     <Compile Include="Assets\Scripts\Networking\PlayerInfo.cs" />
      <Compile Include="Assets\Scripts\OnlineGroupOLDGUI.cs" />
      <Compile Include="Assets\Scripts\OnlinePanelController.cs" />
      <Compile Include="Assets\Scripts\Player\Arrow.cs" />

@@ -1,8 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\OnlineGroupOLDGUI.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Networking\PlayerInfo.cs">
     <Files>
-      <File FileName="Assets\Scripts\OnlineGroupOLDGUI.cs" Line="174" Column="1" />
+      <File FileName="Assets\Scripts\OnlineGroupOLDGUI.cs" Line="113" Column="46" />
+      <File FileName="Assets\Scripts\Networking\PlayerInfo.cs" Line="9" Column="16" />
+      <File FileName="Assets\Scripts\MainMenu\CreateServerPanel.cs" Line="73" Column="8" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
