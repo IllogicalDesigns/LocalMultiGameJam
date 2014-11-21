@@ -19,5 +19,9 @@
 -still needs work only catches some of the words on list needs more time
 -added an ugly online lobby need to work on it
 -removed bombs as they need to be ported to controllers and all players
+-added servers to the game for your enjoyment and fun
+-broke servers so you can't play th
+-fixed servers
+-broke servers again
 
 

@@ -13,7 +13,7 @@ public class OnlineGroupOLDGUI : MonoBehaviour
 		private Rect windowRect1 = new Rect (Screen.height / 16, Screen.width / 16, Screen.width / 1.25f, Screen.height / 1.25f);
 		private Rect windowRect2 = new Rect (Screen.height / 16, Screen.width / 16, Screen.width / 1.25f, Screen.height / 1.25f);
 		public string disconnectedLevel = "MainMenu";
-		private string gameName = "KoTD Tresure Ruse";
+		private string gameName = "KoTD Game";
 		private bool refreshing = false;
 		private HostData[] hostData;
 		private string password = "nimda";
@@ -25,12 +25,14 @@ public class OnlineGroupOLDGUI : MonoBehaviour
 		private int players;
 		private int portint;
 		private bool onMainMenu = true;
+		private bool onServer = false;
 		public MainMenuEvents mainMenuLink;
 
 
 		// Use this for initialization
 		void Start ()
 		{
+				onServer = false;
 				onFinder = true;
 				onSettings = false;
 				ip = Network.player.ipAddress;
@@ -75,6 +77,7 @@ public class OnlineGroupOLDGUI : MonoBehaviour
 				username = ScanForBadWords (username);
 				playerInfoLink.playerName = username;
 				Debug.Log ("Connected to server");
+				onServer = true;
 		}
 
 		void OnFailedToConnect (NetworkConnectionError error)
@@ -105,17 +108,20 @@ public class OnlineGroupOLDGUI : MonoBehaviour
 				bool useNat = !Network.HavePublicAddress ();
 				Network.InitializeServer (players, portint, useNat);
 				gameName = ScanForBadWords (gameName);
-				MasterServer.RegisterHost (gameName, "ShArksGiving", level);
+				MasterServer.RegisterHost (gameName, "KingOfTheDungeon", level);
 				PlayerInfo playerInfoLink = gameObject.GetComponent<PlayerInfo> ();
 				username = ScanForBadWords (username);
 				playerInfoLink.playerName = username;
 				Debug.Log ("started server : " + gameName);
+				onServer = true;
 		}
 
 		void refreshHostList ()
 		{
-				MasterServer.RequestHostList (gameName);
+				MasterServer.RequestHostList ("KingOfTheDungeon");
+				//hostData = MasterServer.PollHostList ();
 				refreshing = true;
+				refreshListNewWay ();
 		}
 
 		void DoMyWindow1 (int windowID)
@@ -140,9 +146,12 @@ public class OnlineGroupOLDGUI : MonoBehaviour
 				password = GUILayout.PasswordField (password, "*" [0], 32);
 				GUILayout.Label ("Multiplayer Servers (may need refresh)");
 				int i = 0;
-				if (MasterServer.PollHostList ().Length > i) { 
+				if (MasterServer.PollHostList ().Length > i && hostData == null) {
+					Debug.Log("can't seem to find the host data it just returned null");
+				}
+				if (MasterServer.PollHostList ().Length > i && hostData != null) { 
 						foreach (HostData element in hostData) {
-								if (GUILayout.Button (element.connectedPlayers + " of " + element.playerLimit + " on level " + element.comment + "[" + element.ip [0] + "]")) { 
+								if (GUILayout.Button (element.gameName + " " + element.connectedPlayers + " of " + element.playerLimit + " on level " + element.comment + "[" + element.ip [0] + "]")) { 
 										string tmpIp = "";
 										tmpIp = element.ip [i] + "";
 										Connect (tmpIp, element.port);
@@ -186,9 +195,18 @@ public class OnlineGroupOLDGUI : MonoBehaviour
 				GUILayout.EndVertical ();
 		}
 
+		void refreshListNewWay(){
+		if (MasterServer.PollHostList ().Length > 0) {  
+			refreshing = false;
+			Debug.Log (MasterServer.PollHostList ().Length);
+			hostData = MasterServer.PollHostList ();
+			Debug.Log("ran New Way");
+		}
+		}
+
 		void  Update ()
 		{
-				if (onMainMenu) {
+				if (!onMainMenu || !onServer) {
 						count -= Time.deltaTime;
 						if (count < 0) {
 								refreshHostList ();
