@@ -108,7 +108,7 @@ public class OnlineGroupOLDGUI : MonoBehaviour
 				bool useNat = !Network.HavePublicAddress ();
 				Network.InitializeServer (players, portint, useNat);
 				gameName = ScanForBadWords (gameName);
-				MasterServer.RegisterHost (gameName, "KingOfTheDungeon", level);
+				MasterServer.RegisterHost ("KingOfTheDungeon", gameName, level);
 				PlayerInfo playerInfoLink = gameObject.GetComponent<PlayerInfo> ();
 				username = ScanForBadWords (username);
 				playerInfoLink.playerName = username;
@@ -221,7 +221,6 @@ public class OnlineGroupOLDGUI : MonoBehaviour
 						}
 				}
 		}
-		// Update is called once per frame
 		void OnGUI ()
 		{
 				if (onMainMenu) {
