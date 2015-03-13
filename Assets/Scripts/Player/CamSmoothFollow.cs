@@ -25,7 +25,7 @@ public class CamSmoothFollow : MonoBehaviour {
 		}
 
 	public void ActivateMyCursor () {
-		myCrossHair.renderer.enabled = true;
+		myCrossHair.GetComponent<Renderer>().enabled = true;
 	}
 
 	public Vector3 RotateToMouse ()

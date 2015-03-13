@@ -11,7 +11,7 @@ public class Rpc : MonoBehaviour {
 	[RPC]
 	public void LoadLevel(string level, int levelPrefix)
 	{
-		if (!networkView.isMine)
+		if (!GetComponent<NetworkView>().isMine)
 		{
 			Debug.Log("here");
 			StartCoroutine(loadLevel(level, levelPrefix));
@@ -20,7 +20,7 @@ public class Rpc : MonoBehaviour {
 	
 	private IEnumerator loadLevel (string level, int levelPrefix)
 	{
-		if (!networkView.isMine)
+		if (!GetComponent<NetworkView>().isMine)
 		{
 			lastLevelPrefix = levelPrefix;
 			

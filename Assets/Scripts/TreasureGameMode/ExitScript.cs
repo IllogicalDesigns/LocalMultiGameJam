@@ -29,12 +29,12 @@ public class ExitScript : MonoBehaviour
 		void OnTriggerStay (Collider other)
 		{
 				//checks to see if we are close enuff and we be human
-				if (other.collider.tag == "Player") {
-						if (other.collider.name == treasureCache.hasTreasure) {
+				if (other.GetComponent<Collider>().tag == "Player") {
+						if (other.GetComponent<Collider>().name == treasureCache.hasTreasure) {
 								//play the exit animation
 								Debug.Log ("someone has delivered the treasure");
 								myAnimatior.SetTrigger ("Exit");
-								nameOfWinner = other.collider.name;
+								nameOfWinner = other.GetComponent<Collider>().name;
 						}
 		}
 	}

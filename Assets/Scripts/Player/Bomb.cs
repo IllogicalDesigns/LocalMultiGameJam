@@ -66,13 +66,13 @@ public class Bomb : MonoBehaviour
 								Vector3 explosionPos = bomb.transform.position;
 								Collider[] colliders = Physics.OverlapSphere (explosionPos, mySphereCollider.radius);
 								foreach (Collider hit in colliders) {
-										if (hit.collider.gameObject.layer == 8) {
-												Health tmpHealthCache = hit.collider.gameObject.GetComponent<Health> ();
+										if (hit.GetComponent<Collider>().gameObject.layer == 8) {
+												Health tmpHealthCache = hit.GetComponent<Collider>().gameObject.GetComponent<Health> ();
 												if (tmpHealthCache != null)
 														tmpHealthCache.health = tmpHealthCache.health - 500;
 										}
-										if (hit && hit.rigidbody)
-												hit.rigidbody.AddExplosionForce (explosionForce, explosionPos, mySphereCollider.radius, 2.0F);
+										if (hit && hit.GetComponent<Rigidbody>())
+												hit.GetComponent<Rigidbody>().AddExplosionForce (explosionForce, explosionPos, mySphereCollider.radius, 2.0F);
 				
 								}
 						}

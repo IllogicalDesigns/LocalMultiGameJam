@@ -16,7 +16,7 @@ public class Arrow : MonoBehaviour
 				v3Current = transform.eulerAngles;
 				Quaternion qRotation = Quaternion.identity;
 				qRotation.eulerAngles = new Vector3 (90, v3Current.y, v3Current.z);
-				rigidbody.velocity = transform.TransformDirection (new Vector3 (0, speed, 0));
+				GetComponent<Rigidbody>().velocity = transform.TransformDirection (new Vector3 (0, speed, 0));
 				boxColl = gameObject.GetComponent<BoxCollider> ();
 				boxColl.enabled = false;
 		}
@@ -27,7 +27,7 @@ public class Arrow : MonoBehaviour
 						boxColl.enabled = true;
 						Arrow arrow = gameObject.GetComponent<Arrow> ();
 						Destroy (arrow, 5f);
-						rigidbody.useGravity = true;//This is to make it flop around when it hitz
+						GetComponent<Rigidbody>().useGravity = true;//This is to make it flop around when it hitz
 						Destroy (gameObject, 15f);
 				}
 		}
@@ -44,7 +44,7 @@ public class Arrow : MonoBehaviour
 								Health healthCache = hit.collider.gameObject.GetComponent<Health> ();
 								if (healthCache != null)
 										healthCache.gameObject.SendMessage ("ApplyDmg", damage);
-								Destroy (rigidbody);
+								Destroy (GetComponent<Rigidbody>());
 								BoxCollider box = gameObject.GetComponent<BoxCollider> ();
 								Arrow arrow = gameObject.GetComponent<Arrow> ();
 								bloodSpray.Play ();
@@ -54,7 +54,7 @@ public class Arrow : MonoBehaviour
 								boxColl.enabled = true;
 								Arrow arrow = gameObject.GetComponent<Arrow> ();
 								Destroy (arrow, 10f);
-								rigidbody.useGravity = true;//This is to make it flop around when it hitz
+								GetComponent<Rigidbody>().useGravity = true;//This is to make it flop around when it hitz
 								Destroy (gameObject, 15f);
 						}
 				}

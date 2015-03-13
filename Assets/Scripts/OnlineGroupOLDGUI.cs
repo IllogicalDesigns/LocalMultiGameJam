@@ -38,7 +38,7 @@ public class OnlineGroupOLDGUI : MonoBehaviour
 				ip = Network.player.ipAddress;
 				HostData[] hostdata = MasterServer.PollHostList ();
 				DontDestroyOnLoad (this);
-				networkView.group = 1;
+				GetComponent<NetworkView>().group = 1;
 				Network.SetLevelPrefix (lastLevelPrefix);
 				if (Network.HavePublicAddress ()) {
 						Debug.Log ("This machine has a public IP address");
@@ -70,7 +70,7 @@ public class OnlineGroupOLDGUI : MonoBehaviour
 		{
 				Network.RemoveRPCsInGroup (0);
 				Network.RemoveRPCsInGroup (1);
-				RpcLink.networkView.RPC ("LoadLevel", RPCMode.AllBuffered, level, lastLevelPrefix + 1);	
+				RpcLink.GetComponent<NetworkView>().RPC ("LoadLevel", RPCMode.AllBuffered, level, lastLevelPrefix + 1);	
 				Application.LoadLevel (levelToLoad);
 				onMainMenu = false;
 				PlayerInfo playerInfoLink = gameObject.GetComponent<PlayerInfo> ();

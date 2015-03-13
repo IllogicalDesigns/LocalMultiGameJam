@@ -77,8 +77,8 @@ public class Movement : MonoBehaviour {
 			//if Jump is pressed add force upwards
 		if(Input.GetButtonDown("Jump") && count >= 50)
 			{
-				rigidbody.AddForce(Vector3.up * jumpForce);
-				rigidbody.AddForce(-transform.forward * jumpForce);
+				GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce);
+				GetComponent<Rigidbody>().AddForce(-transform.forward * jumpForce);
 				shark.SetBool("Jump", true);
 				count = 0;
 			}

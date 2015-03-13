@@ -52,7 +52,7 @@ public class MenuScript : MonoBehaviour {
 		ip = Network.player.ipAddress;
 		HostData[] hostdata = MasterServer.PollHostList();
 		DontDestroyOnLoad(this);
-		networkView.group = 1;
+		GetComponent<NetworkView>().group = 1;
 		Network.SetLevelPrefix(lastLevelPrefix);
 		
 		if (Network.HavePublicAddress()){
@@ -275,7 +275,7 @@ public class MenuScript : MonoBehaviour {
 	void OnConnectedToServer() {
 		Network.RemoveRPCsInGroup(0);
 		Network.RemoveRPCsInGroup(1);
-		RpcLink.networkView.RPC( "LoadLevel", RPCMode.AllBuffered, level,lastLevelPrefix+ 1);
+		RpcLink.GetComponent<NetworkView>().RPC( "LoadLevel", RPCMode.AllBuffered, level,lastLevelPrefix+ 1);
 		int tmpLevel;
 		int.TryParse(level, out tmpLevel);
 		Application.LoadLevel(tmpLevel.ToString());

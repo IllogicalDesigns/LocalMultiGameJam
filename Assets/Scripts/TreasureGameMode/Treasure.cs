@@ -25,7 +25,7 @@ public class Treasure : MonoBehaviour
 		void OnTriggerStay (Collider other)
 		{
 				//checks to see if we are close enuff and we be human
-				if (other.collider.tag == "Player") {
+				if (other.GetComponent<Collider>().tag == "Player") {
 						currentHolder = other.gameObject;
 						hasTreasure = currentHolder.name;
 						Move2p moveCache = currentHolder.gameObject.GetComponent<Move2p> ();

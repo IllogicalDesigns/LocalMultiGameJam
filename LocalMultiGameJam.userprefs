@@ -1,10 +1,13 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Player\Arrow.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Ai\NewFsmCoRutine Ai\TestPlayer.cs">
     <Files>
-      <File FileName="..\..\SuperTurboFistPuncher\Assets\Scripts\PlayerScript.cs" Line="13" Column="3" />
-      <File FileName="Assets\Scripts\Player\Arrow.cs" Line="24" Column="46" />
-      <File FileName="Assets\Scripts\Player\CrossBowz.cs" Line="40" Column="39" />
+      <File FileName="Assets\Logic-AiExaples\Examples\1 - FSM\Example3.cs" Line="1" Column="1" />
+      <File FileName="Assets\Logic-AiExaples\Examples\2 - BT\CoroutineTree.cs" Line="1" Column="1" />
+      <File FileName="Assets\Logic-AiExaples\Examples\3 - Utility\UtilityBehaviour.cs" Line="1" Column="1" />
+      <File FileName="Assets\Logic-AiExaples\Examples\3 - Utility\Example1.cs" Line="1" Column="1" />
+      <File FileName="Assets\Logic-AiExaples\Examples\4 - Actions\Example2.cs" Line="12" Column="3" />
+      <File FileName="Assets\Scripts\Ai\NewFsmCoRutine Ai\TestPlayer.cs" Line="8" Column="32" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

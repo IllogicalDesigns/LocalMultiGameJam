@@ -69,7 +69,7 @@ public class SkeleCollider : MonoBehaviour
 		{
 				skelAiCache.playerInSight = false;
 				//checks to see if we are close enuff and we be human
-				if (other.collider.tag == "Player") {
+				if (other.GetComponent<Collider>().tag == "Player") {
 						skelAiCache.target = other.gameObject;
 						target = other.gameObject;
 						skelAiCache.playerInSight = false;
