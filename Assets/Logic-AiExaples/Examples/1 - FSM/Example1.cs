@@ -3,7 +3,7 @@ using System;
 
 
 namespace Examples.FSM
-{
+{ 
 	public class Example1 : EnumDelegateBehaviour
 	{
 		enum StateType
