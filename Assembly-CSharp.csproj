@@ -74,6 +74,7 @@
      <Compile Include="Assets\Scripts\Ai\AiManager.cs" />
      <Compile Include="Assets\Scripts\Ai\BasicAiTest.cs" />
      <Compile Include="Assets\Scripts\Ai\Dissolve.cs" />
+     <Compile Include="Assets\Scripts\Ai\NewFsmCoRutine Ai\TestCamSmooth.cs" />
      <Compile Include="Assets\Scripts\Ai\NewFsmCoRutine Ai\TestEnemy.cs" />
      <Compile Include="Assets\Scripts\Ai\NewFsmCoRutine Ai\TestPlayer.cs" />
      <Compile Include="Assets\Scripts\Ai\SkeleCollider.cs" />

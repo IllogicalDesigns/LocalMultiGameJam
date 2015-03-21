@@ -21,6 +21,11 @@ public class TestEnemy : MonoBehaviour
 		private NavMeshAgent m_Agent;
 		public bool m_DebugMode = true;
 
+	Vector3 oldPos;									//we need this for direction
+	Vector3 debugHitVector;							//a debug vector for debuging or maybe other stuff
+	public GameObject target;						//are target that we put into the crosshairs
+	public LayerMask layerMask;
+
 		void Start ()
 		{
 				myState = m_AiStates.patrol;
@@ -82,6 +87,31 @@ public class TestEnemy : MonoBehaviour
 								if (m_DebugMode)
 										Debug.DrawLine (transform.position, m_col.transform.position, Color.green, 1f);
 						}
+				}
+		}
+
+		Vector3 ChaseInDatDirection (Transform lastKnownTransform, float distance)
+		{																											//Well this is a party
+				if (lastKnownTransform != null) {
+						//Vector3 targetRelativeForward = lastKnownTransform.TransformDirection (Vector3.forward);	//point relatively forward
+						Vector3 dirOfTravel = -(oldPos - target.transform.position).normalized; 
+						Vector3 rayCastFrom = new Vector3 (lastKnownTransform.position.x, lastKnownTransform.position.y + 0.5f, lastKnownTransform.position.z);
+						RaycastHit hit;																				//make a hit variable
+						if (Physics.Raycast (rayCastFrom, dirOfTravel, out hit, distance, layerMask)) {				//make a raycast check to see if we can move that way
+								NavMeshHit navHit;																	//variable for sampling the nav mesh
+								NavMesh.SamplePosition (hit.point, out navHit, 15f, 1);								//if we hit sample the nav mesh for close point
+										debugHitVector = navHit.position;											//debug if debug mode
+								return navHit.position;																//return our navigation point to where this was called from
+						} else {																					//if we don't hit we can move full speed
+								debugHitVector = rayCastFrom;														//set up the debug vector
+								debugHitVector += dirOfTravel * distance;											//move it in the relative direction for full speed
+								NavMeshHit navHit;																	//set up a nav hit variable for sampling
+								NavMesh.SamplePosition (debugHitVector, out navHit, 15f, 1);						//sampling comenceing
+								return navHit.position;																//return our non-hit point so we can do our shit
+						}																							//close the if-else
+				} else {
+						Debug.Log ("lastKnownTransform returned null when checked last");
+						return Vector3.zero;
 				}
 		}
 		// Update is called once per frame
